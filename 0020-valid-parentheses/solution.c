@@ -18,7 +18,6 @@ int comp_stack(char s, int *stack, int *size){
         return false;
     }
 }
-
 void add_stack(char s, int *stack, int *size){
     stack[(*size)++] = s;
 }
@@ -26,8 +25,7 @@ bool isValid(char* s) {
     if (strlen(s) == 1) {
         return false;
     }
-    int max_stack = strlen(s);
-    int stack[max_stack] = {}; 
+    int stack[strlen(s)] = {}; 
     int stack_size = 0;
     int open = 0;
     int close = 0;
@@ -42,10 +40,11 @@ bool isValid(char* s) {
             default:
                 close++;
                 if (!comp_stack(s[i], stack, &stack_size)) {
-                    return false;
+                    return false; 
+                    //this case covers all the equal parts but dissimilar parenthesis
+                    //e.g. ( and ]
             }
         }
     }
     return (open == close);
 }
-
